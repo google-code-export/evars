@@ -14,7 +14,9 @@ Each OPath expression consists of one or more step separated by '/' or '//'.
 || '/' || Step separator. `A/B` will select child variable `B` of variable `A`|| Yes ||
 || '//' || Multilevel step separator. `A//B` will select every descendant variable `B` of `A` at all levels, this will force interpreter to traverse entire object graph from the context variable.|| Yes ||
 || '`*`' || Selects all children step. A/`*` will select all children variables of variable A || Yes ||
-|| '@' || RegEx step. `@a.*\[[3-4]\]` will select `a[3]`, `ab[4]`, `aaaa[3]` and so on. || Yes ||
+|| '..' || Parent step. Backtracks to parent nodes of currently filtered nodes. for example, `A/B/..` selects `A`|| Yes ||
+|| '.' || Context step. For example, expression `A/B/./*/A` will select variable A || Yes ||
+|| '@' || RegEx step. `@a.*\[[3-4]\]` will select `a[3]`, `ab[4]`, `aaaa[3]` and so on.|| Yes ||
 || `<JavaIdentifier>` || QName step, Select exact match. E.g. value will select all variables named 'value'|| Yes ||
 || `<JavaIdentifier>[<digit>]` || Predicate step of type Array indexing, will select `digit`th element of an array. For example `elementData[2]/*` will select children variables of third element in `elementData` array || Yes ||
 || `<JavaIdentifier>['literal']` || Predicate step of type Map indexing, will select an entry with key "literal". For example `session['user']` will select an entry with the key "user"|| No ||
