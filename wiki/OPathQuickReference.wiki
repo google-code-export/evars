@@ -1,0 +1,15 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+OPath is an extension of [XPath] language but for object graph. I will explain basic terminology here.
+
+
+= Details =
+
+Each OPath expression consists of one or more step separated by '/' or '//'.
+
+|| *Construct* || *Description* ||
+|| '/' || Step separator. A/B means child variable B of variable A||
+|| '//' || Multilevel step separator. A//B means any descendent variable B of A at all levels, this will force interpreter to traverse entire object graph.||
+|| '*' || Selects all children. A/* will select all children variables of variable A.
