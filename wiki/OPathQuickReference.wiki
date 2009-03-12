@@ -1,15 +1,29 @@
 #summary One-sentence summary of this page.
+#labels OPath,Featured,Phase-Implementation
 
 = Introduction =
 
-OPath is an extension of [XPath] language but for object graph. I will explain basic terminology here.
+OPath is an extension of [http://www.w3.org/TR/xpath XPath] language but for searching cyclic object graph, however it ignores all the features which are too specific to XML or are too verbose to be useful. 
 
 
 = Details =
 
 Each OPath expression consists of one or more step separated by '/' or '//'.
 
-|| *Construct* || *Description* ||
-|| '/' || Step separator. A/B means child variable B of variable A||
-|| '//' || Multilevel step separator. A//B means any descendent variable B of A at all levels, this will force interpreter to traverse entire object graph.||
-|| '`*`' || Selects all children. A/`*` will select all children variables of variable A.
+|| *Construct* || *Description* || *Implemented?* ||
+|| '/' || Step separator. `A/B` will select child variable `B` of variable `A`|| Yes ||
+|| '//' || Multilevel step separator. `A//B` will select every descendant variable `B` of `A` at all levels, this will force interpreter to traverse entire object graph from the context variable.|| Yes ||
+|| '`*`' || Selects all children step. A/`*` will select all children variables of variable A || Yes ||
+|| '@' || RegEx step. `@a.*\[[3-4]\]` will select `a[3]`, `ab[4]`, `aaaa[3]` and so on. || Yes ||
+|| `<JavaIdentifier>` || QName step, Select exact match. E.g. value will select all variables named 'value'|| Yes ||
+|| `<JavaIdentifier>[<digit>]` || Predicate step of type Array indexing, will select `digit`th element of an array. For example `elementData[2]/*` will select children variables of third element in `elementData` array || Yes ||
+|| `<JavaIdentifier>['literal']` || Predicate step of type Map indexing, will select an entry with key "literal". For example `session['user']` will select an entry with the key "user"|| No ||
+|| `<JavaIdentifier>#<Method>()` || Method invocation step, will invoke a method named "Method" of a variable if it exists. For example `//a#hashCode` will return value returned from invocation of "hashCode" method for every variable named "a" under context node.|| No ||
+|| `<JavaIdentifier>[Step = String|Digit]` || Predicate step of type Primitive assignment . For example `a[@value=5]` will assign all children of `a` with the name `value` primitive integer value of 5 if it's assignable. || No ||
+|| `<JavaIdentifier>[Step == | != | < | > String|Digit]` || Predicate step of type Relational operations. For example `a[@value>5]` will select all children named `value` of `a` and are greater than integer value 5|| No ||
+ 
+
+
+= Notes =
+
+Performance of OPath is directly dependent on debugger speed as well as model complexity, the more cycles the graph has the greater the amount of memory and time needed to interpret it. Some steps are inherently slow ('`//*`') be careful with them, try to narrow down the graph using other step types whenever it's easy.
