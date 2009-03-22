@@ -19,10 +19,10 @@ Each OPath expression consists of one or more step separated by '/' or '//'.
 || '@' || RegEx step. `@a.*\[[3-4]\]` will select `a[3]`, `ab[4]`, `aaaa[3]` and so on.|| Yes ||
 || `<JavaIdentifier>` || QName step, Select exact match. E.g. value will select all variables named 'value'|| Yes ||
 || `<JavaIdentifier>[<digit>]` || Predicate step of type Array indexing, will select `digit`th element of an array. For example `elementData[2]/*` will select children variables of third element in `elementData` array || Yes ||
-|| `<JavaIdentifier>['literal']` || Predicate step of type string value indexing, will select `<JavaIdentifier>` which has at least one child variable with string value "literal". For example `session['user']` will select every session variable which has at least one child variable with string value "user", Also you can start literal with "@" to specify Regular expression based search. For example, `map//key['@id.*']/..` will select map's entry with key matching `id.*` regular expression. || No ||
+|| `<JavaIdentifier>['literal']` || Predicate step of type string value indexing, will select `<JavaIdentifier>` which has at least one child variable with string value "literal". For example `session['user']` will select every session variable which has at least one child variable with string value "user", Also you can start literal with "@" to specify Regular expression based search. For example, `map//key['@id.*']/..` will select map's entry with key matching `id.*` regular expression. || Yes ||
 || `<JavaIdentifier>[#<Method>()]` || Method invocation step, will invoke a method named "Method" of a variable if it exists. For example `//a#hashCode` will return value returned from invocation of "hashCode" method for every variable named "a" under context node.|| No ||
 || `<JavaIdentifier>[Step = String|Digit]` || Predicate step of type Primitive assignment . For example `a[@value=5]` will assign all children of `a` with the name `value` primitive integer value of 5 if it's assignable. || No ||
-|| `<JavaIdentifier>[Step == | != | < | > String|Digit]` || Predicate step of type Relational operations. For example `a[@value>5]` will select all children named `value` of `a` and are greater than integer value 5|| No ||
+|| `<JavaIdentifier>[Step == | != | < | > String|Digit]` || Predicate step of type Relational operations. For example `a[@value>5]` will select all children named `value` of `a` and are greater than integer value 5|| Yes ||
  
 
 
