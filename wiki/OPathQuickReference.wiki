@@ -25,7 +25,9 @@ Each OPath expression consists of one or more step separated by '/' or '//'.
 || `<JavaIdentifier>[Step = | != | < | > String|Digit]` || Predicate step of type Relational operations. For example `a[value>5]` will select all children named `value` of `a` and are greater than integer value 5|| Yes ||
  
 
-
+= Tricks =
+Following is a list of expression that I often use (I will expand it later):
+  * To select entries of a map of type Map<String, ?> with a key starting with 'user' : `map//key['@user.*']/..`
 = Notes =
 
 Performance of OPath is directly dependent on debugger speed as well as model complexity, the more cycles the graph has the greater the amount of memory and time needed to interpret it. Some steps are inherently slow ('`//*`') be careful with them, try to narrow down the graph using other step types whenever it's easy.
