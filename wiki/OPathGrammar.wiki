@@ -1,0 +1,43 @@
+Following is OPath Grammar
+
+{{{
+LP 			::= RelativeLP	| AbsoluteLP
+
+AbsoluteLP 		::= '/' RelativeLP ? 
+			     | '//' RelativeLP
+
+RelativeLP 		::= Step RLPopt
+
+RLPopt			::= '/' Step RelativeLP
+			    | '//' Step RelativeLP
+
+Step			::= QName* Predicate?
+			    | '*'
+			    | RegExQName*
+			    | QName
+			    | .
+			    | ..
+
+RegExQName		::= @QName
+
+Predicate		::= '[' Expr ']'
+
+Expr			::= EqualsExpr ExprOpt
+ 					
+ExprOpt			::= '==' EqualsExpr ExprOpt
+			    | '!=' EqualsExpr ExprOpt
+							
+EqualsExpr		::= RelExpr EqExprOpt
+
+EqExprOpt		::= '<' RelExpr EqualsExpr 
+			    | '>' RelExpr EqualsExpr
+
+RelExpr			::= <digit> | SLiteral | Method Invocation
+
+Method Invocation	::= '#' QName
+
+SLiteral		::= ' QName ' | ' RegExQName '
+ 							
+QName			::= [a-zA-Z0-9_[]{}\/'";:$&~`%]+
+ 							
+}}}
