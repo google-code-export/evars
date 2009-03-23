@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description url="http://evars.googlecode.com/svn/update/name.nirav.evars-update">
+      EVars update site
+   </description>
+   <feature url="features/name.nirav.evarsfeature_1.0.0.jar" id="name.nirav.evarsfeature" version="1.0.0"/>
+   <archive path="EVars Experimental Release Java 1.6" url="http://evars.googlecode.com/files/name.nirav.evariablesview_1.0.0.jar"/>
+   <archive path="EVars Experimental Release for Java 1.5" url="http://evars.googlecode.com/files/name.nirav.evariablesview_1.0.0-1.5.jar"/>
+</site>
