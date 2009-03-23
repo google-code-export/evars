@@ -3,7 +3,19 @@
    <description url="http://evars.googlecode.com/svn/update/name.nirav.evars-update">
       EVars update site
    </description>
-   <feature url="features/name.nirav.evarsfeature_1.0.0.jar" id="name.nirav.evarsfeature" version="1.0.0"/>
+   <feature url="features/name.nirav.evarsfeature_1.0.0.jar" id="name.nirav.evarsfeature" version="1.0.0">
+      <category name="Nightly Builds"/>
+   </feature>
    <archive path="EVars Experimental Release Java 1.6" url="http://evars.googlecode.com/files/name.nirav.evariablesview_1.0.0.jar"/>
    <archive path="EVars Experimental Release for Java 1.5" url="http://evars.googlecode.com/files/name.nirav.evariablesview_1.0.0-1.5.jar"/>
+   <category-def name="Nightly Builds" label="Nightly Builds">
+      <description>
+         Update site for EVars Nightly builds
+      </description>
+   </category-def>
+   <category-def name="Release Builds" label="Release Builds">
+      <description>
+         Update site for EVars release builds
+      </description>
+   </category-def>
 </site>
