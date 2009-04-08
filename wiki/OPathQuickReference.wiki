@@ -28,6 +28,9 @@ Each OPath expression consists of one or more step separated by '/' or '//'.
 = Tricks =
 Following is a list of expression that I often use (I will expand it later):
   * To select entries of a map of type Map<String, ?> with a key starting with 'user' : `map//key['@user.*']/..`
+  * If you have map with a lot of connected objects, it might be easier to just write following for a quick key search 
+     `map/table/@\[[0-9]+\]/key['@.*YourSearchText.*']`
+
 = Notes =
 
 Performance of OPath is directly dependent on debugger speed as well as model complexity, the more cycles the graph has the greater the amount of memory and time needed to interpret it. Some steps are inherently slow ('`//*`') be careful with them, try to narrow down the graph using other step types whenever it's easy.
